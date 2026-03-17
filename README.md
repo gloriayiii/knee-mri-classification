@@ -33,26 +33,52 @@ Each MRI scan is stored as a **folder of 2D PNG slices** (typically 100+ slices 
 
 ## Data Processing
 
-### MRI-level Split (Important)
+### MRI-Level Data Organization
 
-To avoid **data leakage**, the dataset is split at the **MRI folder level**, not at the slice level.
+Each MRI scan is stored as a folder containing multiple 2D PNG slices (typically over 100 slices per scan). The dataset is organized into two classes:
 
-This ensures that slices from the same MRI do not appear in both training and testing sets.
+- KL0 (non-OA)
+- KL3/4 (OA)
+
+---
+
+### Train/Test Split (MRI-Level)
+
+The dataset is split into training and testing sets using an **80% / 20% ratio**.
+
+Importantly, the split is performed at the **MRI-folder level**, not at the slice level.
+
+This ensures that all slices from the same MRI scan remain in the same split (either training or testing), preventing data leakage.
+
+Stratified sampling is applied to maintain class balance between KL0 and KL3/4.
 
 ---
 
 ### Slice Selection (Middle 20 Slices)
 
-Each MRI contains many slices, but not all slices are equally informative.
+Each MRI contains many slices, but not all slices are equally informative. Peripheral slices often contain limited anatomical information.
 
-We select only the **middle 20 slices** from each MRI.
+To focus on the most relevant region, we select only the **middle 20 slices** from each MRI.
 
 Example:
 
-- If an MRI has 160 slices (indexed 0–159)  
-- Selected slices: **70–89**
+- If an MRI has 160 slices (indexed from 0 to 159)  
+- Selected slices: **70 to 89**
 
-This reduces noise and focuses on the most relevant anatomical region.
+This reduces noise and improves training efficiency.
+
+---
+
+### Slice-Level Dataset Construction
+
+After splitting MRI folders into training and testing sets, the selected slices are flattened into individual image samples.
+
+Each slice inherits the label of its corresponding MRI:
+
+- KL0 → label 0  
+- KL3/4 → label 1  
+
+Thus, the model is trained and evaluated at the **slice level**, while the split is performed at the **MRI level**.
 
 ---
 
