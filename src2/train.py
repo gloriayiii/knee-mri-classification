@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from evaluate import evaluate
 
 def train_model(model, train_loader, val_loader=None, epochs=20, lr=1e-3):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
