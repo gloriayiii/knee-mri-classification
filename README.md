@@ -45,11 +45,7 @@ This ensures that slices from the same MRI do not appear in both training and te
 
 Each MRI contains many slices, but not all slices are equally informative.
 
-We select only the **middle 20 slices** from each MRI:
-
-\[
-\text{start} = \frac{N - 20}{2}, \quad \text{end} = \text{start} + 20
-\]
+We select only the **middle 20 slices** from each MRI.
 
 Example:
 
