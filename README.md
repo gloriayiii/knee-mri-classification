@@ -1,45 +1,76 @@
-# knee-mri-classification
-
-
-# Knee MRI OA Classification (KL 0 vs KL 3/4)
+# Knee MRI Osteoarthritis Classification (KL 0 vs KL 3/4)
 
 ## Overview
 
-This project implements a simple convolutional neural network (CNN) to classify knee MRI images from the Osteoarthritis Initiative (OAI) dataset into:
+This project implements a basic deep learning pipeline to classify knee MRI images into:
 
-- **Non-OA** (KL = 0)
-- **OA** (KL = 3 or 4)
+- **Non-Osteoarthritis (KL = 0)**
+- **Osteoarthritis (KL = 3 or 4)**
 
-The goal is not to build a perfect model, but to understand:
+using a convolutional neural network (CNN).
 
-- the medical imaging pipeline  
-- the impact of model settings  
-- how to interpret evaluation metrics  
-- limitations of small datasets  
+The goal of this project is not to build a highly optimized model, but to:
+
+- understand the medical imaging workflow  
+- explore how model settings affect performance  
+- interpret evaluation metrics (accuracy, confusion matrix, etc.)  
+- analyze limitations of small medical datasets  
 
 ---
 
 ## Dataset
 
-- Total samples: 122 MRI images  
+The dataset contains knee MRI scans from the Osteoarthritis Initiative (OAI).
+
+- Total MRI scans: 122  
   - 61 KL = 0  
-  - 61 KL = 3/4
-    
+  - 61 KL = 3 or 4  
+
+Each MRI scan is stored as a **folder of 2D PNG slices** (typically 100+ slices per scan).
+
+
+---
+
+## Data Processing
+
+### MRI-level Split (Important)
+
+To avoid **data leakage**, the dataset is split at the **MRI folder level**, not at the slice level.
+
+This ensures that slices from the same MRI do not appear in both training and testing sets.
+
+---
+
+### Slice Selection (Middle 20 Slices)
+
+Each MRI contains many slices, but not all slices are equally informative.
+
+We select only the **middle 20 slices** from each MRI:
+
+\[
+\text{start} = \frac{N - 20}{2}, \quad \text{end} = \text{start} + 20
+\]
+
+Example:
+
+- If an MRI has 160 slices (indexed 0–159)  
+- Selected slices: **70–89**
+
+This reduces noise and focuses on the most relevant anatomical region.
+
 ---
 
 ## Model
 
-We use a simple CNN with:
+We use a simple CNN architecture:
 
 - 3 convolutional layers  
-- ReLU activations  
+- ReLU activation  
 - Max pooling  
-- Fully connected classifier  
+- Fully connected layers  
+- Output: single neuron (binary classification)
 
-Output:
-- Single neuron with sigmoid (binary classification)
-
-Loss:
+Loss function:
 - `BCEWithLogitsLoss`
 
 Optimizer:
@@ -47,83 +78,89 @@ Optimizer:
 
 ---
 
-## Training Setup
+## Experiments
 
-- Image size: 224 × 224  
-- Batch size: 8  
-- Train/test split: 80/20 (stratified)  
-- Device: CPU or GPU  
+We conduct **6 experiments** to analyze the effect of different training settings.
+
+### Run 1 — Baseline
+
+- epochs = 20  
+- learning rate = 1e-3  
+- batch size = 8  
+- model = SimpleCNN  
 
 ---
 
-## Experiments
+### Run 2 — Fewer Epochs
 
-Experiments
+- epochs = 10  
+- learning rate = 1e-3  
+- batch size = 8  
 
-We conducted six runs to examine how performance changes with different training settings and model complexity.
+Purpose:
+- Examine **underfitting**
 
-## Run 1 (Baseline):
-epochs = 20, learning rate = 1e-3, batch size = 8, SimpleCNN
+---
 
-## Run 2 (Fewer epochs):
-epochs = 10, learning rate = 1e-3, batch size = 8, SimpleCNN
-Purpose: assess underfitting behavior.
+### Run 3 — More Epochs
 
-## Run 3 (More epochs):
-epochs = 30, learning rate = 1e-3, batch size = 8, SimpleCNN
-Purpose: assess possible overfitting.
+- epochs = 30  
+- learning rate = 1e-3  
+- batch size = 8  
 
-## Run 4 (Lower learning rate):
-epochs = 20, learning rate = 1e-4, batch size = 8, SimpleCNN
-Purpose: assess slower but potentially more stable convergence.
+Purpose:
+- Examine potential **overfitting**
 
-## Run 5 (Higher learning rate):
-epochs = 20, learning rate = 1e-2, batch size = 8, SimpleCNN
-Purpose: assess whether a larger learning rate causes unstable optimization.
+---
 
-## Run 6 (Larger model):
-epochs = 20, learning rate = 1e-3, batch size = 8, DeeperCNN
-Purpose: assess the effect of model complexity on a small MRI dataset.
+### Run 4 — Lower Learning Rate
+
+- epochs = 20  
+- learning rate = 1e-4  
+- batch size = 8  
+
+Purpose:
+- Evaluate slower but more stable convergence
+
+---
+
+### Run 5 — Higher Learning Rate
+
+- epochs = 20  
+- learning rate = 1e-2  
+- batch size = 8  
+
+Purpose:
+- Evaluate training instability
+
+---
+
+### Run 6 — Larger Model
+
+- deeper CNN (more layers and channels)  
+- epochs = 20  
+- learning rate = 1e-3  
+- batch size = 8  
+
+Purpose:
+- Evaluate the effect of model complexity on a small dataset
+
 ---
 
 ## Evaluation Metrics
 
-We compute:
+We evaluate model performance using `sklearn`:
 
 - Accuracy  
+- Balanced Accuracy  
 - Precision  
 - Recall (Sensitivity)  
 - Specificity  
 - F1-score  
+- AUC (ROC)  
 - Confusion Matrix  
 
----
-
-## Results Interpretation
-
-### Accuracy
-
-Measures overall correctness, but may be misleading in medical tasks.
-
----
-
-### Sensitivity (Recall)
-
-- Measures how many OA cases are correctly detected  
-- Low sensitivity means missed disease cases  
-
----
-
-### Specificity
-
-- Measures how many healthy cases are correctly identified  
-- Low specificity means false alarms  
-
----
-
 ### Confusion Matrix
-
-Provides detailed breakdown:
 
 |               | Pred OA | Pred Normal |
 |--------------|--------|------------|
@@ -132,50 +169,38 @@ Provides detailed breakdown:
 
 ---
 
-## Expected Observations
+## Reproducibility
 
-- Fewer epochs → underfitting (low accuracy)  
-- More epochs → possible overfitting  
-- Lower learning rate → slower but more stable training  
-- Larger model → may not improve performance due to small dataset  
+All experiments use a fixed random seed 17
+
+This ensures consistent train/test splits and model initialization.
 
 ---
 
+## Results Analysis
+
+??
+
 ## Limitations
 
-- Very small dataset (122 samples)  
-- Risk of overfitting  
-- MRI input vs radiographic KL label mismatch  
-- No patient-level split (possible data leakage if slices overlap)  
-- Simple CNN may miss subtle anatomical features  
+??
 
 ---
 
 ## Potential Clinical Applications
 
-- Preliminary screening tool for OA  
-- Assist radiologists in identifying suspicious cases  
-- Could support disease monitoring with more data  
-
-However, the current model is **not suitable for clinical deployment** due to limited data and validation.
+??
 
 ---
 
 ## Future Work
 
-- Use pretrained models (ResNet, ViT)  
-- Add data augmentation  
-- Apply Grad-CAM for interpretability  
-- Use larger and multi-center datasets  
-- Incorporate clinical metadata (age, sex, BMI)  
+??
 
 ---
 
 ## Summary
 
-This project demonstrates:
+??
 
-- how to build a basic medical imaging classification pipeline  
-- how model settings affect performance  
-- why multiple evaluation metrics are necessary  
-- the challenges of applying deep learning to small medical datasets  
+
