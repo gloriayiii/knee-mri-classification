@@ -199,7 +199,18 @@ This ensures consistent train/test splits and model initialization.
 
 ## Results Analysis
 
-??
+Using the middle 20 slices from each MRI, we report the main metrics for all experiments:
+
+| Experiment | Acc | Recall | Spec | F1 |
+|------------|-----|--------|------|-----|
+| Baseline | 0.5816 | 0.7278 | 0.4500 | 0.6223 |
+| Fewer Epochs | 0.5921 | 0.8000 | 0.4050 | 0.6501 |
+| More Epochs | 0.6316 | 0.7667 | 0.5100 | 0.6635 |
+| Lower LR | 0.5816 | 0.7389 | 0.4400 | 0.6259 |
+| Higher LR | 0.4737 | 1.0000 | 0.0000 | 0.6429 |
+| Larger Model | 0.6289 | 0.7167 | 0.5500 | 0.6466 |
+
+Overall, the best accuracy is achieved with more training epochs (0.6316), while the larger model improves specificity (0.55). The model consistently shows higher recall than specificity, indicating better detection of OA cases but more false positives. A high learning rate leads to unstable training and poor performance.
 
 ## Limitations
 
