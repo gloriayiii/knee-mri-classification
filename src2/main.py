@@ -8,7 +8,21 @@ from dataset import KneeMRIDataset
 from model import SimpleCNN
 from train import train_model
 from evaluate import evaluate
+import random
+import numpy as np
+import torch
 
+def set_seed(seed=17):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
+    print(f"Seed set to {seed}")
 
 class DeeperCNN(nn.Module):
     def __init__(self):
@@ -199,6 +213,7 @@ def print_summary_table(results):
 
 
 def main():
+    set_seed(17)
     root_dir = "kl_dataset"
 
     image_paths, labels = load_data(root_dir)
