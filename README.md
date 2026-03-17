@@ -152,12 +152,10 @@ Purpose:
 We evaluate model performance using `sklearn`:
 
 - Accuracy  
-- Balanced Accuracy  
 - Precision  
 - Recall (Sensitivity)  
 - Specificity  
 - F1-score  
-- AUC (ROC)  
 - Confusion Matrix  
 
 ### Confusion Matrix
