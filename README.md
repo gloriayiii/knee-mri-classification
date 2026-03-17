@@ -58,59 +58,32 @@ Optimizer:
 
 ## Experiments
 
-We evaluate how model performance changes with different settings.
+Experiments
 
-### Baseline
+We conducted six runs to examine how performance changes with different training settings and model complexity.
 
-- epochs = 20  
-- learning rate = 1e-3  
-- batch size = 8  
+## Run 1 (Baseline):
+epochs = 20, learning rate = 1e-3, batch size = 8, SimpleCNN
 
----
+## Run 2 (Fewer epochs):
+epochs = 10, learning rate = 1e-3, batch size = 8, SimpleCNN
+Purpose: assess underfitting behavior.
 
-### Exp A: Fewer epochs
+## Run 3 (More epochs):
+epochs = 30, learning rate = 1e-3, batch size = 8, SimpleCNN
+Purpose: assess possible overfitting.
 
-- epochs = 10  
-- learning rate = 1e-3  
-- batch size = 8  
+## Run 4 (Lower learning rate):
+epochs = 20, learning rate = 1e-4, batch size = 8, SimpleCNN
+Purpose: assess slower but potentially more stable convergence.
 
-Purpose:
-- Check underfitting behavior
+## Run 5 (Higher learning rate):
+epochs = 20, learning rate = 1e-2, batch size = 8, SimpleCNN
+Purpose: assess whether a larger learning rate causes unstable optimization.
 
----
-
-### Exp B: More epochs
-
-- epochs = 30  
-- learning rate = 1e-3  
-- batch size = 8  
-
-Purpose:
-- Check overfitting behavior
-
----
-
-### Exp C: Lower learning rate
-
-- epochs = 20  
-- learning rate = 1e-4  
-- batch size = 8  
-
-Purpose:
-- Check training stability and convergence speed
-
----
-
-### Exp D: Larger model (optional)
-
-- deeper CNN (more channels / layers)  
-- epochs = 20  
-- learning rate = 1e-3  
-- batch size = 8  
-
-Purpose:
-- Evaluate effect of model complexity on small dataset
-
+## Run 6 (Larger model):
+epochs = 20, learning rate = 1e-3, batch size = 8, DeeperCNN
+Purpose: assess the effect of model complexity on a small MRI dataset.
 ---
 
 ## Evaluation Metrics
