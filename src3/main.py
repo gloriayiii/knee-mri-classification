@@ -753,7 +753,7 @@ EXPERIMENTS = {
 
 # Test Run 30 Slices
 
-def select_middle_slices(png_paths, num_slices=10):
+def select_middle_slices(png_paths, num_slices=30):
     png_paths = sorted(png_paths)
     n = len(png_paths)
 
@@ -770,7 +770,7 @@ def select_middle_slices(png_paths, num_slices=10):
     return png_paths[start:end]
 
 
-def load_mri_groups(root_dir, num_slices=10):
+def load_mri_groups(root_dir, num_slices=30):
     kl0_dir = os.path.join(root_dir, "KL0")
     kl34_dir = os.path.join(root_dir, "KL34")
 
@@ -945,7 +945,7 @@ def main():
     set_seed(17)
 
     root_dir = r"C:\Documents\AI Med Imaging\2459 Midterm Project\data\knee_MRIs"
-    num_slices = 10
+    num_slices = 30
 
     mri_groups = load_mri_groups(root_dir, num_slices=num_slices)
 
