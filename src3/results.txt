@@ -29,3 +29,14 @@ specificity: 0.4100
 f1: 0.6031
 balanced_accuracy: 0.5624
 auc: 0.6022
+
+Slices	Accuracy	Recall	Specificity	F1	AUC	Balanced Accuracy
+10	0.5263	0.6667	0.4000	0.5714	0.6624	0.5333
+20	0.5711	0.7611	0.4000	0.6270	0.6306	0.5806
+30	0.5544	0.7148	0.4100	0.6031	0.6022	0.5624
+
+20 slices performed the best and had the highest accuracy, recall, F1, and balanced accuracy. This suggests 20 slices is the most clinically useful amount for this application.
+Using the middle 10 slices saw a drop in accuracy, recall, and F1, but had the highest AUC. This implies that too few slices lead to information loss, and the model becomes less stable
+Running the model with the 30 middle slices performed slightly better than 10 slices, but did not outperform using the middle 20. This indicates that using more slices introduced irrelevant anatomy, noise, and redundant information.
+These results show there appears to be an optimal slice window (20 slices) where the model balances signal versus noise. Too few slices lose critical features, while too many dilute relevant information.
+
