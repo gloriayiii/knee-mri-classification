@@ -258,7 +258,7 @@ The model consistently shows higher recall than specificity, alluding to a bias 
 ### 3) Single train/test split evaluated
 These results are based on a single split (80/20%). This may not fully reflect variablity in model performance.
 
-### 4) Sinlge model exploration
+### 4) Single model exploration
 The only model used for this experiment was CNN. Other and/or more advanced models may improve performance and results.
 
 ---
