@@ -238,22 +238,22 @@ Using the middle 20 slices from each MRI as a baseline, we report the main metri
 | More Slices (30) | 0.5544 | 0.7148 | 0.4100 | 0.6031 |
 
 Confusion Matrix: 20 slices
-|               | Pred OA | Pred Normal |
+|               | Pred Normal | Pred OA |
 |--------------|--------|------------|
-| True OA      | 80     | 120         |
-| True Normal  | 43     | 137         |
+| True Normal      | 80     | 120         |
+| True OA  | 43     | 137         |
 
 Confusion Matrix: 10 Slices
-|               | Pred OA | Pred Normal |
+|               | Pred Normal | Pred OA |
 |--------------|--------|------------|
-| True OA      | 40     | 60         |
-| True Normal  | 30     | 60         |
+| True Normal      | 40     | 60         |
+| True OA  | 30     | 60         |
 
 Confusion Matrix: 30 Slices
-|               | Pred OA | Pred Normal |
+|               | Pred Normal | Pred OA |
 |--------------|--------|------------|
-| True OA      | 123     | 177         |
-| True Normal  | 77     | 193         |
+| True Normal      | 123     | 177         |
+| True OA  | 77     | 193         |
 
 20 slices performed the best and had the highest accuracy, recall, F1, and balanced accuracy. This suggests 20 slices is the most clinically useful amount for this application.
 
