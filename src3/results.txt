@@ -8,6 +8,10 @@ f1: 0.6270
 balanced_accuracy: 0.5806
 auc: 0.6306
 
+Confusion Matrix:
+TN: 80, FP: 120
+FN: 43, TP: 137
+
 10 slice experiment results:
 
 Evaluation Metrics:
@@ -19,6 +23,10 @@ f1: 0.5714
 balanced_accuracy: 0.5333
 auc: 0.6624
 
+Confusion Matrix:
+TN: 40, FP: 60
+FN: 30, TP: 60
+
 30 slice experiment results:
 
 Evaluation Metrics:
@@ -29,6 +37,10 @@ specificity: 0.4100
 f1: 0.6031
 balanced_accuracy: 0.5624
 auc: 0.6022
+
+Confusion Matrix:
+TN: 123, FP: 177
+FN: 77, TP: 193
 
 Slices	Accuracy	Recall	Specificity	F1	AUC	Balanced Accuracy
 10	0.5263	0.6667	0.4000	0.5714	0.6624	0.5333
