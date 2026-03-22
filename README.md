@@ -102,7 +102,7 @@ Optimizer:
 
 ## Experiments
 
-We conduct **6 experiments** to analyze the effect of different training settings.
+Experiment A: We conduct **6 experiments** to analyze the effect of different training settings.
 
 ### Run 1 — Baseline
 
@@ -167,6 +167,20 @@ Purpose:
 Purpose:
 - Evaluate the effect of model complexity on a small dataset
 
+---
+Experiment B: We conduct **3 experiments** to analyze the effect of different slice amounts.
+
+### Run 1 — Baseline (20 Slices)
+
+### Run 2 — Fewer Slices (10 Slices)
+
+Purpose:
+- Evaluate the effect of fewer slices on a small dataset
+
+### Run 3 — More Slices (30 Slices)
+
+Purpose:
+- Evaluate the effect of more slices on a small dataset
 ---
 
 ## Evaluation Metrics
