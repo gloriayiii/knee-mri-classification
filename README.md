@@ -289,6 +289,12 @@ Analysis of knee osteoarthritis imaging datasets can expand research in the fiel
 
 ## Summary
 
-??
+In this project, we developed a convolutional neural network to classify knee MRI scans into non-osteoarthritis (KL 0) and osteoarthritis (KL 3/4). We explored the effects of training parameters and slice selection amounts on model performance.
+
+Our results showed that increasing epochs and model complexity improved performance. Slice selection experiments indicated that using the middle 20 slices per MRI produced the best overall results. This suggests an optimal balance between capturing important knee anatomy information and reducing noise.
+
+Across all experiments, the model produced higher recall than specificity representing a stronger ability to detect osteoarthritis cases but a tendency toward false positives.
+
+Overall, this project highlights major challenges in medical imaging classification tasks using deep learning models, such as limited datasets, image noise, and the importance of preprocessing choices. Despite our model's modest performance, the findings provide insight into how model design and data selection impact outcomes. This provides a foundation to build upon for future improvements.
 
 
