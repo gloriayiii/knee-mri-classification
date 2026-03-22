@@ -247,7 +247,19 @@ These results show there appears to be an optimal slice window (20 slices) where
 
 ## Limitations
 
-??
+Several limitations should be considered when interpreting these results.
+
+### 1) Small dataset size
+The dataset includes only 122 MRI scans, which limits generalizability and increases the risk of the model overfitting.
+
+### 2) Class imbalance
+The model consistently shows higher recall than specificity, alluding to a bias toward predicting osteoarthritis (KL 3/4) and producing false positives.
+
+### 3) Single train/test split evaluated
+These results are based on a single split (80/20%). This may not fully reflect variablity in model performance.
+
+### 4) Sinlge model exploration
+The only model used for this experiment was CNN. Other and/or more advanced models may improve performance and results.
 
 ---
 
