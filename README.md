@@ -227,6 +227,8 @@ Using the middle 20 slices from each MRI, we report the main metrics for all 6 e
 Overall, the best accuracy is achieved with more training epochs (0.6316), while the larger model improves specificity (0.55). The model consistently shows higher recall than specificity, indicating better detection of OA cases but more false positives. A high learning rate leads to unstable training and poor performance.
 
 
+
+
 Using the middle 20 slices from each MRI as a baseline, we report the main metrics for the 2 additional experiments (10 and 30 slices) in experiment B:
 
 | Experiment | Acc | Recall | Spec | F1 |
