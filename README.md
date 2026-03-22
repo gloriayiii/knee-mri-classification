@@ -213,7 +213,7 @@ This ensures consistent train/test splits and model initialization.
 
 ## Results Analysis
 
-Using the middle 20 slices from each MRI, we report the main metrics for all experiments:
+Using the middle 20 slices from each MRI, we report the main metrics for all 6 experiments in experiment A:
 
 | Experiment | Acc | Recall | Spec | F1 |
 |------------|-----|--------|------|-----|
@@ -225,6 +225,23 @@ Using the middle 20 slices from each MRI, we report the main metrics for all exp
 | Larger Model | 0.6289 | 0.7167 | 0.5500 | 0.6466 |
 
 Overall, the best accuracy is achieved with more training epochs (0.6316), while the larger model improves specificity (0.55). The model consistently shows higher recall than specificity, indicating better detection of OA cases but more false positives. A high learning rate leads to unstable training and poor performance.
+
+
+Using the middle 20 slices from each MRI as a baseline, we report the main metrics for the 2 additional experiments (10 and 30 slices) in experiment B:
+
+| Experiment | Acc | Recall | Spec | F1 |
+|------------|-----|--------|------|-----|
+| Baseline (20) | 0.5711 | 0.7611 | 0.4000 | 0.6270 |
+| Fewer Slices (10) | 0.5263 | 0.6667 | 0.4000 | 0.5714 |
+| More Slices (30) | 0.5544 | 0.7148 | 0.4100 | 0.6031 |
+
+20 slices performed the best and had the highest accuracy, recall, F1, and balanced accuracy. This suggests 20 slices is the most clinically useful amount for this application.
+
+Using the middle 10 slices saw a drop in accuracy, recall, and F1, but had the highest AUC. This implies that too few slices lead to information loss, and the model becomes less stable
+
+Running the model with the 30 middle slices performed slightly better than 10 slices, but did not outperform using the middle 20. This indicates that using more slices introduced irrelevant anatomy, noise, and redundant information.
+
+These results show there appears to be an optimal slice window (20 slices) where the model balances signal versus noise. Too few slices lose critical features, while too many dilute relevant information.
 
 ## Limitations
 
