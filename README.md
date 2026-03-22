@@ -265,7 +265,19 @@ The only model used for this experiment was CNN. Other and/or more advanced mode
 
 ## Potential Clinical Applications
 
-??
+Despite limitations, this experiment demonstrates several potential clinical applications.
+
+### 1) Decision support tools
+Providing a second opinion to improve diagnosis consistency.
+
+### 2) Workflow prioritization
+Utilizing a predictive model could help prioritize higher risk cases in a clinical setting to improve efficiency and patient outcomes.
+
+### 3) Automated knee osteoarthritis screening platform
+A model could aid radiologists by flagging MRIs that require a more in-depth review.
+
+### 4) Research applications
+Analysis of knee osteoarthritis imaging datasets can expand research in the field and improve diagnosis and treatments.
 
 ---
 
