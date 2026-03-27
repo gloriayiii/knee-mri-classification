@@ -301,7 +301,17 @@ Analysis of knee osteoarthritis imaging datasets can expand research in the fiel
 
 ## Future Work
 
-??
+### 1) Prediction at MRI level instead of slice level
+This approach treats each MRI slice independently. Future work could investigate MRI level prediciton or use models that are able to process 3D images.
+
+### 2) Larger and more diverse datasets
+Expanding the dataset with more MRI scans from multiple sources would improve generalizability and model performance. Including a wider range of patient demographics and imaging variations would also make the model more robust and more in line with real clinical data.
+
+### 3) Advanced models
+This project uses a simple CNN, future work could explore more advanced deep learning architectures and models designed for medical imaging tasks. These models may improve feature extraction and classification performance.
+
+### 4) Different slice selection strategies
+Instead of selecting the fixed amount of middle MRI slices, future approaches could use adaptive slice selection methods to identify the most informative and optimal regions of the MRI. This approach could help focus the model on clinically relevant features.
 
 ---
 
