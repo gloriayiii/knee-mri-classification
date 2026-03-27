@@ -281,7 +281,7 @@ The only model used for this experiment was CNN. Other and/or more advanced mode
 
 ---
 
-## Potential Clinical Applications
+## Potential Clinical Applications & Risks
 
 Despite limitations, this experiment demonstrates several potential clinical applications.
 
@@ -296,6 +296,8 @@ A model could aid radiologists by flagging MRIs that require a more in-depth rev
 
 ### 4) Research applications
 Analysis of knee osteoarthritis imaging datasets can expand research in the field and improve diagnosis and treatments.
+
+The model's low specificity and high false positive rate may limit its direct clinical use and relevance, which could lead to incorrect diagnoses and unncessary evaluations. The model would also need validated on other datasets before being implemented in a clinical setting. At present, this approach is best suited as a decision support tool and not an automated diagnostic system.
 
 ---
 
