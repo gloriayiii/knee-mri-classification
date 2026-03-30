@@ -172,12 +172,27 @@ Experiment B: We conduct **3 experiments** to analyze the effect of different sl
 
 ### Run 1 — Baseline (20 Slices)
 
+epochs = 20
+learning rate = 1e-3
+batch size = 8
+model = SimpleCNN
+
 ### Run 2 — Fewer Slices (10 Slices)
+
+epochs = 20
+learning rate = 1e-3
+batch size = 8
+model = SimpleCNN
 
 Purpose:
 - Evaluate the effect of fewer slices on a small dataset
 
 ### Run 3 — More Slices (30 Slices)
+
+epochs = 20
+learning rate = 1e-3
+batch size = 8
+model = SimpleCNN
 
 Purpose:
 - Evaluate the effect of more slices on a small dataset
