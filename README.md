@@ -168,7 +168,11 @@ Purpose:
 - Evaluate the effect of model complexity on a small dataset
 
 ---
-Experiment B: We conduct **3 experiments** to analyze the effect of different slice amounts.
+Experiment B: We conduct **3 experiments** to analyze the effect of different slice amounts using the same parameter settings as the Baseline in Experiment A:
+- epochs = 20  
+- learning rate = 1e-3  
+- batch size = 8  
+- model = SimpleCNN  
 
 ### Run 1 — Baseline (20 Slices)
 
